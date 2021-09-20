@@ -1,6 +1,7 @@
 import firebase from "firebase/compat/app";
 import 'firebase/auth';
 import 'firebase/database';
+import { initializeApp } from "firebase/app";
 
 
 let firebaseConfig = {
@@ -17,5 +18,5 @@ let firebaseConfig = {
   if(!firebase.apps.length){
     firebase.initializeApp(firebaseConfig);
   }
-
+  
   export default firebase;

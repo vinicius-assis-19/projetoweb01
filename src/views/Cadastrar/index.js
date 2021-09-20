@@ -5,6 +5,7 @@ import * as S from './styles'
 import Header from '../../components/Header';
 import firebase from '../../services/firebaseConnection';
 import 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 function Cadastrar(){
     const[user, setUser] = useState({
@@ -12,30 +13,20 @@ function Cadastrar(){
         email: '',
         senha: '',
         error: '',
-    })   
-
-
-
-    
+    })       
 
     // Submit function (Create account)
     const entrando = async(e) => {
-      e.preventDefault();
-      // Sign up code here.
-      await firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-        .then(result => {
-          // Update the nickname
-          result.user.updateProfile({
-            displayName: user.nickname,
-          })
-        }).catch(error => {
-          // Update the error
-          console.log(error);
-          setUser({
-            ...user,
-            error: error.message,
-          })
-        })
+        const auth = getAuth();
+        console.log(auth)
+        createUserWithEmailAndPassword(auth, user.email, user.password)   
+        .then((userCredential) => {
+            console.log(userCredential)
+            // Signed in
+            const user = userCredential.user;
+            alert("Cadastrado com sucesso!")
+            // ...
+          })     
     }
 
     const handleChange = e =>{
@@ -72,7 +63,7 @@ function Cadastrar(){
                     </S.CaixaTxt>
                     <S.CaixaTxt
                         placeholder="Senha"
-                        name="senha"
+                        name="password"
                         //autoCorrect={false}
                         //autoCapitalize="none"
                         //value ={senha}
@@ -80,7 +71,7 @@ function Cadastrar(){
                         onChange={handleChange}
                     >       
                     </S.CaixaTxt>
-                <button type="submit" onClick={entrando}>Cadastrar</button>
+                <button onClick={entrando}>Cadastrar</button>
         </S.Container>
     )
 }
