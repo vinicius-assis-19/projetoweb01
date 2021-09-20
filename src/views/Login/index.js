@@ -7,7 +7,7 @@ function Login(){
     return(
         <S.Container>            
             <Header/>
-                <h1>Fazer Login</h1>
+                <h1>Login</h1>
                 <S.CaixaTxt placeholder='E-mail'></S.CaixaTxt>
                 <S.CaixaTxt placeholder='Senha'></S.CaixaTxt>
                 <button>Entrar</button>
