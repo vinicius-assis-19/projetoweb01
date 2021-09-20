@@ -5,10 +5,11 @@ import Header from '../../components/Header';
 
 function Login(){
     return(
-        <S.Container>
+        <S.Container>            
             <Header/>
-                <input placeholder='E-mail'></input>
-                <input placeholder='Senha'></input>
+                <h1>Fazer Login</h1>
+                <S.CaixaTxt placeholder='E-mail'></S.CaixaTxt>
+                <S.CaixaTxt placeholder='Senha'></S.CaixaTxt>
                 <button>Entrar</button>
                 <a href="/Cadastrar">Cadastrar</a>
         </S.Container>
