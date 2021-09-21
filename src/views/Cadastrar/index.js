@@ -17,16 +17,16 @@ function Cadastrar(){
 
     // Submit function (Create account)
     const entrando = async(e) => {
-        const auth = getAuth();
-        console.log(auth)
+        const auth = getAuth();        
         createUserWithEmailAndPassword(auth, user.email, user.password)   
-        .then((userCredential) => {
-            console.log(userCredential)
-            // Signed in
+        .then((userCredential) => {            
             const user = userCredential.user;
-            alert("Cadastrado com sucesso!")
-            // ...
+            alert("Cadastrado com sucesso!")            
           })     
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+        });
     }
 
     const handleChange = e =>{
@@ -44,29 +44,20 @@ function Cadastrar(){
                 <S.CaixaTxt
                         type="text"
                         placeholder="Nome"
-                        name= "nome"                        
-                        //autoCorrect={false}
-                        //autoCapitalize="none"
-                        //value = {nome}
+                        name= "nome"                                                
                         onChange={handleChange}
                     >                
                     </S.CaixaTxt>
                     <S.CaixaTxt
                         placeholder="Email"
                         name="email"
-                        type="text"
-                        //autoCorrect={false}
-                        //autoCapitalize="none"
-                        //value ={email}
+                        type="text"                        
                         onChange={handleChange}
                     >                
                     </S.CaixaTxt>
                     <S.CaixaTxt
                         placeholder="Senha"
                         name="password"
-                        //autoCorrect={false}
-                        //autoCapitalize="none"
-                        //value ={senha}
                         type='password'
                         onChange={handleChange}
                     >       
